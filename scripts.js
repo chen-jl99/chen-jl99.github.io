@@ -1,6 +1,6 @@
 // Global variables
 let allPublications = [];
-let showingSelected = true;
+let showingSelected = false;
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
