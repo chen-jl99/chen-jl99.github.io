@@ -1,1 +1,1 @@
-The design and source code are from [Yuhui Zhang](https://cs.stanford.edu/~yuhuiz/).
+The design and source code are adapted from [Minimal-Academic-Website](https://github.com/yuhui-zh15/Minimal-Academic-Website).
