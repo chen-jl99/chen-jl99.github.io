@@ -78,100 +78,94 @@ function renderPublications(selectedOnly) {
 function createPublicationElement(publication) {
   const pubItem = document.createElement('div');
   pubItem.className = 'publication-item';
-  
-  // Create thumbnail
-  const thumbnail = document.createElement('div');
-  thumbnail.className = 'pub-thumbnail';
-  thumbnail.onclick = () => openModal(publication.thumbnail);
-  
-  const thumbnailImg = document.createElement('img');
-  thumbnailImg.src = publication.thumbnail;
-  thumbnailImg.alt = `${publication.title} thumbnail`;
-  thumbnail.appendChild(thumbnailImg);
-  
+
   // Create content container
   const content = document.createElement('div');
   content.className = 'pub-content';
-  
+
   // Add title
   const title = document.createElement('div');
   title.className = 'pub-title';
   title.textContent = publication.title;
   content.appendChild(title);
-  
+
   // Add authors with highlight
   const authors = document.createElement('div');
   authors.className = 'pub-authors';
-  
-  // Format authors with highlighting
+
   let authorsHTML = '';
   publication.authors.forEach((author, index) => {
-    if (author.includes('Author 3')) { // TODO: Highlight specific author
+    if (author.includes('Junlin Chen')) {
       authorsHTML += `<span class="highlight-name">${author}</span>`;
     } else {
       authorsHTML += author;
     }
-    
+
     if (index < publication.authors.length - 1) {
       authorsHTML += ', ';
     }
   });
-  
+
   authors.innerHTML = authorsHTML;
   content.appendChild(authors);
-  
+
   // Add venue with award if present
   const venueContainer = document.createElement('div');
   venueContainer.className = 'pub-venue-container';
-  
+
   const venue = document.createElement('div');
   venue.className = 'pub-venue';
   venue.textContent = publication.venue;
   venueContainer.appendChild(venue);
-  
-  // Add award if it exists
+
   if (publication.award && publication.award.length > 0) {
     const award = document.createElement('div');
     award.className = 'pub-award';
     award.textContent = publication.award;
     venueContainer.appendChild(award);
   }
-  
+
   content.appendChild(venueContainer);
-  
-  // Add links if they exist
+
+  // Add links if they exist and are not placeholders
   if (publication.links) {
     const links = document.createElement('div');
     links.className = 'pub-links';
-    
-    if (publication.links.pdf) {
+
+    if (publication.links.pdf && publication.links.pdf !== '#') {
       const pdfLink = document.createElement('a');
       pdfLink.href = publication.links.pdf;
       pdfLink.textContent = '[PDF]';
+      pdfLink.target = '_blank';
+      pdfLink.rel = 'noopener noreferrer';
       links.appendChild(pdfLink);
     }
-    
-    if (publication.links.code) {
+
+    if (publication.links.code && publication.links.code !== '#') {
       const codeLink = document.createElement('a');
       codeLink.href = publication.links.code;
       codeLink.textContent = '[Code]';
+      codeLink.target = '_blank';
+      codeLink.rel = 'noopener noreferrer';
       links.appendChild(codeLink);
     }
-    
-    if (publication.links.project) {
+
+    if (publication.links.project && publication.links.project !== '#') {
       const projectLink = document.createElement('a');
       projectLink.href = publication.links.project;
       projectLink.textContent = '[Project Page]';
+      projectLink.target = '_blank';
+      projectLink.rel = 'noopener noreferrer';
       links.appendChild(projectLink);
     }
-    
-    content.appendChild(links);
+
+    if (links.children.length > 0) {
+      content.appendChild(links);
+    }
   }
-  
-  // Assemble the publication item
-  pubItem.appendChild(thumbnail);
+
   pubItem.appendChild(content);
-  
+
   return pubItem;
 }
 
