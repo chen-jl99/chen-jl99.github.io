@@ -47,17 +47,17 @@ function displayFallbackPublications() {
   container.innerHTML = `Error loading publications.`;
 }
 
-// Toggle between showing all or selected publications
-function togglePublications() {
-  showingSelected = !showingSelected;
-  renderPublications(showingSelected);
+// // Toggle between showing all or selected publications
+// function togglePublications() {
+//   showingSelected = !showingSelected;
+//   renderPublications(showingSelected);
   
-  // Update button text
-  const toggleButton = document.getElementById('toggle-publications');
-  toggleButton.textContent = showingSelected ? 'Show All' : 'Show Selected';
-  const toggleHeader = document.getElementById('toggle-header');
-  toggleHeader.textContent = showingSelected ? 'Selected Publications' : 'All Publications';
-}
+//   // Update button text
+//   const toggleButton = document.getElementById('toggle-publications');
+//   toggleButton.textContent = showingSelected ? 'Show All' : 'Show Selected';
+//   const toggleHeader = document.getElementById('toggle-header');
+//   toggleHeader.textContent = showingSelected ? 'Selected Publications' : 'All Publications';
+// }
 
 // Render publications based on selection state
 function renderPublications(selectedOnly) {
@@ -135,7 +135,7 @@ function createPublicationElement(publication) {
     if (publication.links.pdf && publication.links.pdf !== '#') {
       const pdfLink = document.createElement('a');
       pdfLink.href = publication.links.pdf;
-      pdfLink.textContent = '[PDF]';
+      pdfLink.textContent = '[Paper]';
       pdfLink.target = '_blank';
       pdfLink.rel = 'noopener noreferrer';
       links.appendChild(pdfLink);
