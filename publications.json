@@ -1,5 +1,5 @@
 {
-  "publications": [
+  "working_papers": [
     {
       "title": "On the Linear Programming Model for Dynamic Stochastic Matching Under Limited Time and Its Application to Pricing",
       "authors": [
@@ -44,7 +44,9 @@
       "links": {
         "pdf": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5202084"
       }
-    },
+    }
+  ],
+  "publications": [
     {
       "title": "The Value of Delay Compensation in Online Food Delivery: Analysis of Willingness to Pay and Preference Heterogeneity",
       "authors": [
