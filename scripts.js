@@ -1,11 +1,13 @@
 // Global variables
 let workingPapers = [];
-let publications = [];
+let journalPublications = [];
+let conferenceProceedings = [];
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
   loadPublications();
 
+  // Initialize animation delays for sections
   const sections = document.querySelectorAll('section');
   sections.forEach((section, index) => {
     section.style.animationDelay = `${index * 0.1}s`;
@@ -23,10 +25,12 @@ function loadPublications() {
     })
     .then(data => {
       workingPapers = data.working_papers || [];
-      publications = data.publications || [];
+      journalPublications = data.journal_publications || [];
+      conferenceProceedings = data.conference_proceedings || [];
 
       renderPublicationList('working-papers-container', workingPapers);
-      renderPublicationList('publications-container', publications);
+      renderPublicationList('journal-publications-container', journalPublications);
+      renderPublicationList('conference-proceedings-container', conferenceProceedings);
     })
     .catch(error => {
       console.error('Error loading publications:', error);
@@ -36,27 +40,29 @@ function loadPublications() {
 
 // Fallback if JSON loading fails
 function displayFallbackPublications() {
-  const workingContainer = document.getElementById('working-papers-container');
-  const publicationsContainer = document.getElementById('publications-container');
+  const containers = [
+    'working-papers-container',
+    'journal-publications-container',
+    'conference-proceedings-container'
+  ];
 
-  if (workingContainer) {
-    workingContainer.innerHTML = 'Error loading working papers.';
-  }
-
-  if (publicationsContainer) {
-    publicationsContainer.innerHTML = 'Error loading publications.';
-  }
+  containers.forEach(containerId => {
+    const container = document.getElementById(containerId);
+    if (container) {
+      container.innerHTML = 'Error loading publications.';
+    }
+  });
 }
 
-// Render a list of publications into a given container
+// Render one publication category
 function renderPublicationList(containerId, items) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
   container.innerHTML = '';
 
-  items.forEach(item => {
-    const pubElement = createPublicationElement(item);
+  items.forEach(publication => {
+    const pubElement = createPublicationElement(publication);
     container.appendChild(pubElement);
   });
 }
@@ -69,11 +75,13 @@ function createPublicationElement(publication) {
   const content = document.createElement('div');
   content.className = 'pub-content';
 
+  // Title
   const title = document.createElement('div');
   title.className = 'pub-title';
   title.textContent = publication.title;
   content.appendChild(title);
 
+  // Authors
   const authors = document.createElement('div');
   authors.className = 'pub-authors';
 
@@ -94,6 +102,7 @@ function createPublicationElement(publication) {
 
   content.appendChild(authors);
 
+  // Venue and award
   const venueContainer = document.createElement('div');
   venueContainer.className = 'pub-venue-container';
 
@@ -111,23 +120,21 @@ function createPublicationElement(publication) {
 
   content.appendChild(venueContainer);
 
+  // Links
   if (publication.links) {
     const links = document.createElement('div');
     links.className = 'pub-links';
 
     if (publication.links.pdf && publication.links.pdf !== '#') {
-      const pdfLink = createPublicationLink(publication.links.pdf, '[Paper]');
-      links.appendChild(pdfLink);
+      links.appendChild(createPublicationLink(publication.links.pdf, '[Paper]'));
     }
 
     if (publication.links.code && publication.links.code !== '#') {
-      const codeLink = createPublicationLink(publication.links.code, '[Code]');
-      links.appendChild(codeLink);
+      links.appendChild(createPublicationLink(publication.links.code, '[Code]'));
     }
 
     if (publication.links.project && publication.links.project !== '#') {
-      const projectLink = createPublicationLink(publication.links.project, '[Project]');
-      links.appendChild(projectLink);
+      links.appendChild(createPublicationLink(publication.links.project, '[Project]'));
     }
 
     if (links.children.length > 0) {

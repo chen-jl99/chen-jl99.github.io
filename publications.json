@@ -46,7 +46,7 @@
       }
     }
   ],
-  "publications": [
+  "journal_publications": [
     {
       "title": "The Value of Delay Compensation in Online Food Delivery: Analysis of Willingness to Pay and Preference Heterogeneity",
       "authors": [
@@ -81,21 +81,6 @@
       }
     },
     {
-      "title": "Two-Sided Instant Incentive Optimization under a Shared Budget in Ride-Hailing Services",
-      "authors": [
-        "Junlin Chen",
-        "Xin Liu",
-        "Weidong Liu",
-        "Hai Jiang"
-      ],
-      "venue": "IEEE 39th International Conference on Data Engineering (ICDE), 3481–3493 (2023)",
-      "selected": 1,
-      "award": "",
-      "links": {
-        "pdf": "https://ieeexplore.ieee.org/abstract/document/10184613"
-      }
-    },
-    {
       "title": "Cycling Map Inference Using Global Positioning System Trajectories: A Case Study in the Online Food Delivery Business",
       "authors": [
         "Junlin Chen",
@@ -108,6 +93,23 @@
       "award": "",
       "links": {
         "pdf": "https://journals.sagepub.com/doi/abs/10.1177/03611981221110564"
+      }
+    }
+  ],
+  "conference_proceedings": [
+    {
+      "title": "Two-Sided Instant Incentive Optimization under a Shared Budget in Ride-Hailing Services",
+      "authors": [
+        "Junlin Chen",
+        "Xin Liu",
+        "Weidong Liu",
+        "Hai Jiang"
+      ],
+      "venue": "IEEE 39th International Conference on Data Engineering (ICDE), 3481–3493 (2023)",
+      "selected": 1,
+      "award": "",
+      "links": {
+        "pdf": "https://ieeexplore.ieee.org/abstract/document/10184613"
       }
     }
   ]
