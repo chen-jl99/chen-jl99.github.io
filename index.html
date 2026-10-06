@@ -9,23 +9,24 @@
     <meta property="og:title" content="Junlin Chen - Academic Homepage">
     <meta property="og:description" content="Research in pricing, dynamic stochastic matching, discrete choice modeling, and data-driven optimization for transportation and logistics platforms.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="#">
+    <meta property="og:url" content="https://chen-jl99.github.io/">
     <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://chen-jl99.github.io/">
     <title>Junlin Chen's Website</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20261005-6">
 </head>
 
 <body id="top">
     <header>
         <div class="header-content">
             <h1>Junlin Chen</h1>
-            <p>Postdoctoral Scholar • UC Berkeley IEOR</p>
+            <p class="header-affiliation">Postdoctoral Scholar · UC Berkeley IEOR</p>
             <div class="social-links-header">
-                <a href="mailto:junlin.chen@berkeley.edu"><i class="fas fa-envelope"></i>Email</a>
-                <a href="https://www.linkedin.com/in/jl-chen/"><i class="fab fa-linkedin"></i>LinkedIn</a>
-                <a href="https://scholar.google.com/citations?user=LITsB48AAAAJ"><i class="fas fa-graduation-cap"></i>Google Scholar</a>
+                <a href="mailto:junlin.chen@berkeley.edu"><i class="fas fa-envelope" aria-hidden="true"></i>Email</a>
+                <a href="https://www.linkedin.com/in/jl-chen/"><i class="fab fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+                <a href="https://scholar.google.com/citations?user=LITsB48AAAAJ"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Google Scholar</a>
             </div>
         </div>
         <div class="header-image">
@@ -33,8 +34,19 @@
         </div>
     </header>
 
+    <nav aria-label="Page sections">
+        <div class="tab-list" role="tablist" aria-label="Website sections">
+            <button type="button" role="tab" id="tab-about" aria-controls="about" aria-selected="true" tabindex="0">About</button>
+            <button type="button" role="tab" id="tab-research" aria-controls="research" aria-selected="false" tabindex="-1">Research</button>
+            <button type="button" role="tab" id="tab-talks" aria-controls="talks" aria-selected="false" tabindex="-1">Presentations</button>
+            <button type="button" role="tab" id="tab-awards" aria-controls="awards" aria-selected="false" tabindex="-1">Awards</button>
+            <button type="button" role="tab" id="tab-teaching" aria-controls="teaching" aria-selected="false" tabindex="-1">Teaching</button>
+            <button type="button" role="tab" id="tab-services" aria-controls="services" aria-selected="false" tabindex="-1">Service</button>
+        </div>
+    </nav>
+
     <main>
-        <section id="about">
+        <section id="about" role="tabpanel" aria-labelledby="tab-about" tabindex="0">
             <p> Hi! I am a postdoctoral scholar in the Department of Industrial Engineering and Operations Research at the University of California, Berkeley, where I'm working with <a href="https://yanchiwei.github.io/index.html">Dr. Chiwei Yan</a> and <a href="https://sites.google.com/view/manxi-wu/home">Dr. Manxi Wu</a>. </p>
             <p> I received my Ph.D. in Management Science and Engineering from the Department of Industrial Engineering at Tsinghua University in 2026, where I was advised by <a href="https://www.ie.tsinghua.edu.cn/eng/info/1051/1023.htm">Dr. Hai Jiang</a>. I received my B.Eng. in Traffic Engineering from the Department of Civil Engineering at Tsinghua University in 2021. </p>
             <p>
@@ -43,117 +55,147 @@
             </p>
         </section>
 
-        <section id="working-papers">
-            <h2>Working Papers</h2>
-            <div id="working-papers-container">
-                <!-- Working papers will be loaded from publications.json -->
-            </div>
+        <div id="research" role="tabpanel" aria-labelledby="tab-research" tabindex="0" hidden>
+            <section id="working-papers">
+                <h2>Working Papers</h2>
+                <div id="working-papers-container">
+                    <!-- Working papers will be loaded from publications.json -->
+                </div>
+            </section>
+
+            <section id="journal-publications">
+                <h2>Journal Publications</h2>
+                <div id="journal-publications-container">
+                    <!-- Journal publications will be loaded from publications.json -->
+                </div>
+            </section>
+
+            <section id="conference-proceedings">
+                <h2>Conference Proceedings</h2>
+                <div id="conference-proceedings-container">
+                    <!-- Conference proceedings will be loaded from publications.json -->
+                </div>
+            </section>
+        </div>
+
+        <section id="talks" role="tabpanel" aria-labelledby="tab-talks" tabindex="0" hidden>
+            <h2>Conference Presentations</h2>
+            <ul class="presentation-list" role="list">
+                <li class="presentation-item">
+                    <h3 class="presentation-title">On the Linear Programming Model for Dynamic Stochastic Matching and Its Application to Pricing</h3>
+                    <ul class="presentation-events" role="list">
+                        <li class="dated-row">
+                            <time class="date-label" datetime="2026">2026</time>
+                            <div>INFORMS Annual Meeting (San Francisco, CA) <span class="presentation-status">Scheduled</span></div>
+                        </li>
+                        <li class="dated-row">
+                            <time class="date-label" datetime="2026">2026</time>
+                            <div>Cornell ORIE Young Researchers Workshop (Ithaca, NY) <span class="presentation-status">Scheduled</span></div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="presentation-item">
+                    <h3 class="presentation-title">Mixed-Type Courier Dispatching and Pricing for Online Food Delivery Platforms</h3>
+                    <ul class="presentation-events" role="list">
+                        <li class="dated-row">
+                            <time class="date-label" datetime="2026">2026</time>
+                            <div>INFORMS TSL Conference (Cambridge, MA)</div>
+                        </li>
+                        <li class="dated-row">
+                            <time class="date-label" datetime="2025">2025</time>
+                            <div>INFORMS Annual Meeting (Atlanta, GA)</div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="presentation-item">
+                    <h3 class="presentation-title">Two-Sided Instant Incentive Optimization under a Shared Budget in Ride-Hailing Services</h3>
+                    <ul class="presentation-events" role="list">
+                        <li class="dated-row">
+                            <time class="date-label" datetime="2023">2023</time>
+                            <div>IEEE 39th International Conference on Data Engineering (Anaheim, CA)</div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </section>
 
-        <section id="journal-publications">
-            <h2>Journal Publications</h2>
-            <div id="journal-publications-container">
-                <!-- Journal publications will be loaded from publications.json -->
-            </div>
-        </section>
-
-        <section id="conference-proceedings">
-            <h2>Conference Proceedings</h2>
-            <div id="conference-proceedings-container">
-                <!-- Conference proceedings will be loaded from publications.json -->
-            </div>
-        </section>
-
-
-        <section id="awards">
+        <section id="awards" role="tabpanel" aria-labelledby="tab-awards" tabindex="0" hidden>
             <h2>Honors, Awards, and Grants</h2>
-            <div class="award-item">
-                <span class="award-year">2025</span>
-                <div class="award-desc">Finalist, INFORMS TSL Data-Driven Research Challenge</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2024</span>
-                <div class="award-desc">INFORMS TSL Cross-Regional Doctoral Grant</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2024</span>
-                <div class="award-desc">Tsinghua Scholarship for Overseas Graduate Studies</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2022–24</span>
-                <div class="award-desc">Tsinghua University Comprehensive Excellence Award</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2022</span>
-                <div class="award-desc">Third Prize, WeChat Big Data Challenge (Rank 45/3204)</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2018–20</span>
-                <div class="award-desc">Tsinghua University Academic Excellence Award</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2019</span>
-                <div class="award-desc">Tsinghua University Technology Innovation Award</div>
-            </div>
+            <ul class="award-list" role="list">
+                <li class="dated-row">
+                    <span class="date-label">2025</span>
+                    <div>Finalist, INFORMS TSL Data-Driven Research Challenge</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">2024</span>
+                    <div>INFORMS TSL Cross-Regional Doctoral Grant</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">2024</span>
+                    <div>Tsinghua Scholarship for Overseas Graduate Studies</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">2022–24</span>
+                    <div>Tsinghua University Comprehensive Excellence Award</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">2022</span>
+                    <div>Third Prize, WeChat Big Data Challenge (Rank 45/3204)</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">2018–20</span>
+                    <div>Tsinghua University Academic Excellence Award</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">2019</span>
+                    <div>Tsinghua University Technology Innovation Award</div>
+                </li>
+            </ul>
         </section>
 
-        <section id="talks">
-            <h2>Talks</h2>
-            <div class="award-item">
-                <span class="award-year">2026</span>
-                <div class="award-desc">INFORMS Annual Meeting (San Francisco, CA, scheduled)</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2026</span>
-                <div class="award-desc">INFORMS TSL Conference (Cambridge, MA)</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2025</span>
-                <div class="award-desc">INFORMS Annual Meeting (Atlanta, GA)</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2024</span>
-                <div class="award-desc">Joint Event for Sino-European Projects (Hangzhou, China)</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2023</span>
-                <div class="award-desc">The 15th Workshop on Behavioral Operations Management (Wuxi, China)</div>
-            </div>
-            <div class="award-item">
-                <span class="award-year">2023</span>
-                <div class="award-desc">IEEE 39th International Conference on Data Engineering (Anaheim, CA)</div>
-            </div>
+        <section id="teaching" role="tabpanel" aria-labelledby="tab-teaching" tabindex="0" hidden>
+            <h2>Teaching</h2>
+            <h3>Teaching Assistant</h3>
+            <p class="section-note">Tsinghua University</p>
+            <ul class="teaching-list" role="list">
+                <li class="dated-row">
+                    <span class="date-label">Spring 2024</span>
+                    <div>Distribution System Modeling</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">Fall 2023</span>
+                    <div>Logistics &amp; Supply Chain Management</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">Summer 2023</span>
+                    <div>Big Data Practice</div>
+                </li>
+                <li class="dated-row">
+                    <span class="date-label">Fall 2021</span>
+                    <div>Introduction to Operations Research</div>
+                </li>
+            </ul>
         </section>
 
-        <section id="services">
-            <h2>Services</h2>
-
-            <div class="service-category">
-                <div class="service-title">Ad Hoc Reviewer</div>
-                <p>
-                    Operations Research<br>
-                    Transportation Research Part B: Methodological<br>
-                    Transportation Research Part C: Emerging Technologies<br>
-                    Transportation Research Record<br>
-                </p>
-            </div>
-
-            <div class="service-category">
-                <div class="service-title">Teaching Assistant</div>
-                <p>
-                    Distribution System Modeling (Spring 2024, Tsinghua University)<br>
-                    Logistics &amp; Supply Chain Management (Fall 2023, Tsinghua University)<br>
-                    Big Data Practice (Summer 2023, Tsinghua University)<br>
-                    Introduction to Operations Research (Fall 2021, Tsinghua University)
-                </p>
-            </div>
+        <section id="services" role="tabpanel" aria-labelledby="tab-services" tabindex="0" hidden>
+            <h2>Academic Service</h2>
+            <h3>Ad Hoc Reviewer</h3>
+            <ul class="service-list" role="list">
+                <li>Operations Research</li>
+                <li>Transportation Science</li>
+                <li>Transportation Research Part B: Methodological</li>
+                <li>Transportation Research Part C: Emerging Technologies</li>
+                <li>Research in Transportation Business &amp; Management</li>
+                <li>Transportation Research Record</li>
+                <li>Transportation Research Board Annual Meeting</li>
+            </ul>
         </section>
 
     </main>
 
     <footer>
         <p>
-            Last updated: July 29, 2026. Design and source code adapted from
+            Last updated: October 5, 2026. Design and source code adapted from
             <a href="https://github.com/yuhui-zh15/Minimal-Academic-Website">Minimal-Academic-Website</a>.
         </p>
     </footer>
@@ -163,6 +205,6 @@
         <img class="modal-content" id="modalImage" alt="Expanded profile">
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="scripts.js?v=20261005-4"></script>
 </body>
 </html>

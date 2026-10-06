@@ -5,18 +5,96 @@ let conferenceProceedings = [];
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
+  initializeTabs();
   loadPublications();
-
-  // Initialize animation delays for sections
-  const sections = document.querySelectorAll('section');
-  sections.forEach((section, index) => {
-    section.style.animationDelay = `${index * 0.1}s`;
-  });
 });
+
+// Keep navigation, visible content, and the URL fragment in sync.
+function initializeTabs() {
+  const tabList = document.querySelector('[role="tablist"]');
+  if (!tabList) return;
+
+  const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
+  const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+  const researchSections = ['working-papers', 'journal-publications', 'conference-proceedings'];
+
+  function tabForCurrentFragment() {
+    let panelId;
+    try {
+      panelId = decodeURIComponent(window.location.hash.slice(1));
+    } catch (error) {
+      panelId = '';
+    }
+
+    if (researchSections.includes(panelId)) panelId = 'research';
+
+    return tabs.find(tab => tab.getAttribute('aria-controls') === panelId)
+      || tabs.find(tab => tab.getAttribute('aria-controls') === 'about');
+  }
+
+  function activateTab(activeTab, updateHistory = false, moveFocus = false) {
+    if (!activeTab) return;
+
+    if (updateHistory && tabForCurrentFragment() !== activeTab) {
+      const fragment = activeTab.getAttribute('aria-controls');
+      window.history.pushState(null, '', `#${fragment}`);
+    }
+
+    tabs.forEach((tab, index) => {
+      const isActive = tab === activeTab;
+      tab.setAttribute('aria-selected', String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+      if (panels[index]) panels[index].hidden = !isActive;
+    });
+
+    if (moveFocus) activeTab.focus();
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(tab, true, true));
+
+    tab.addEventListener('keydown', event => {
+      let nextIndex;
+      switch (event.key) {
+        case 'ArrowLeft':
+          nextIndex = (index - 1 + tabs.length) % tabs.length;
+          break;
+        case 'ArrowRight':
+          nextIndex = (index + 1) % tabs.length;
+          break;
+        case 'Home':
+          nextIndex = 0;
+          break;
+        case 'End':
+          nextIndex = tabs.length - 1;
+          break;
+        default:
+          return;
+      }
+
+      event.preventDefault();
+      activateTab(tabs[nextIndex], true, true);
+    });
+  });
+
+  function restoreTabFromFragment() {
+    const activeTab = tabForCurrentFragment();
+    const focusInTabs = tabList.contains(document.activeElement);
+    const focusInHiddenPanel = panels.some(panel => panel
+      && panel.id !== activeTab?.getAttribute('aria-controls')
+      && panel.contains(document.activeElement));
+
+    activateTab(activeTab, false, focusInTabs || focusInHiddenPanel);
+  }
+
+  window.addEventListener('popstate', restoreTabFromFragment);
+  window.addEventListener('hashchange', restoreTabFromFragment);
+  activateTab(tabForCurrentFragment());
+}
 
 // Load publications from JSON file
 function loadPublications() {
-  fetch('publications.json')
+  fetch('publications.json', { cache: 'no-cache' })
     .then(response => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.status}`);
@@ -76,7 +154,7 @@ function createPublicationElement(publication) {
   content.className = 'pub-content';
 
   // Title
-  const title = document.createElement('div');
+  const title = document.createElement('h3');
   title.className = 'pub-title';
   title.textContent = publication.title;
   content.appendChild(title);
@@ -126,15 +204,15 @@ function createPublicationElement(publication) {
     links.className = 'pub-links';
 
     if (publication.links.pdf && publication.links.pdf !== '#') {
-      links.appendChild(createPublicationLink(publication.links.pdf, '[Paper]'));
+      links.appendChild(createPublicationLink(publication.links.pdf, 'Paper', publication.title));
     }
 
     if (publication.links.code && publication.links.code !== '#') {
-      links.appendChild(createPublicationLink(publication.links.code, '[Code]'));
+      links.appendChild(createPublicationLink(publication.links.code, 'Code', publication.title));
     }
 
     if (publication.links.project && publication.links.project !== '#') {
-      links.appendChild(createPublicationLink(publication.links.project, '[Project]'));
+      links.appendChild(createPublicationLink(publication.links.project, 'Project', publication.title));
     }
 
     if (links.children.length > 0) {
@@ -146,10 +224,11 @@ function createPublicationElement(publication) {
   return pubItem;
 }
 
-function createPublicationLink(url, label) {
+function createPublicationLink(url, label, publicationTitle) {
   const link = document.createElement('a');
   link.href = url;
   link.textContent = label;
+  link.setAttribute('aria-label', `${label}: ${publicationTitle}`);
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   return link;
